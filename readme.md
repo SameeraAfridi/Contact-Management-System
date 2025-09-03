@@ -1,15 +1,11 @@
-ContactManagementSystem/
- ├── Contact.java
- ├── ContactManager.java
- ├── Main.java
 
-# 📞 Contact Management System (Java)
+#  Contact Management System (Java)
 
 A simple **Contact Management System** built in **Java** using:
 - **HashMap** to store contacts in memory.
 - **File I/O** to persist contacts (`contacts.txt`).
 
-## 🚀 Features
+##  Features
 - Add new contact (Name, Phone, Email)
 - View all contacts
 - Search contact by phone
@@ -17,8 +13,12 @@ A simple **Contact Management System** built in **Java** using:
 - Delete contact
 - Data persists even after restarting (saved in file)
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - Java (Core)
 - File I/O (`BufferedReader`, `BufferedWriter`)
 - Collections (`HashMap`)
 
+ContactManagementSystem/
+ ├── Contact.java
+ ├── ContactManager.java
+ ├── Main.java
