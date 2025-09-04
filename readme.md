@@ -1,6 +1,8 @@
 
 #  Contact Management System (Java)
 
+<img width="424" height="334" alt="image" src="https://github.com/user-attachments/assets/633abef8-412a-41f6-906a-0c4c09259889" />
+
 A simple **Contact Management System** built in **Java** using:
 - **HashMap** to store contacts in memory.
 - **File I/O** to persist contacts (`contacts.txt`).
