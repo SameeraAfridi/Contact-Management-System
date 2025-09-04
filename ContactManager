@@ -1,0 +1,88 @@
+import java.io.*;
+import java.util.*;
+
+public class ContactManager {
+    private HashMap<String, Contact> contacts = new HashMap<>();
+    private final String FILE_NAME = "contacts.txt";
+
+    public ContactManager() {
+        loadContacts();
+    }
+
+    // Add a new contact
+    public void addContact(Contact contact) {
+        contacts.put(contact.getPhone(), contact);
+        saveContacts();
+    }
+
+    // View all contacts
+    public void viewContacts() {
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts found.");
+            return;
+        }
+        for (Contact c : contacts.values()) {
+            System.out.println(c);
+        }
+    }
+
+    // Search by phone
+    public void searchContact(String phone) {
+        Contact c = contacts.get(phone);
+        if (c != null) {
+            System.out.println("Found: " + c);
+        } else {
+            System.out.println("Contact not found.");
+        }
+    }
+
+    // Update contact
+    public void updateContact(String phone, String newName, String newEmail) {
+        Contact c = contacts.get(phone);
+        if (c != null) {
+            c.setName(newName);
+            c.setEmail(newEmail);
+            saveContacts();
+            System.out.println("Contact updated.");
+        } else {
+            System.out.println("Contact not found.");
+        }
+    }
+
+    // Delete contact
+    public void deleteContact(String phone) {
+        if (contacts.remove(phone) != null) {
+            saveContacts();
+            System.out.println("Contact deleted.");
+        } else {
+            System.out.println("Contact not found.");
+        }
+    }
+
+    // Save contacts to file
+    private void saveContacts() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Contact c : contacts.values()) {
+                writer.write(c.getName() + "," + c.getPhone() + "," + c.getEmail());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving contacts: " + e.getMessage());
+        }
+    }
+
+    // Load contacts from file
+    private void loadContacts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 3) {
+                    contacts.put(data[1], new Contact(data[0], data[1], data[2]));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No existing contacts found, starting fresh.");
+        }
+    }
+}
